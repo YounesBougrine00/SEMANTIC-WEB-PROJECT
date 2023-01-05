@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Description du restaurant "Le Bouchon"</title>
+    <link rel="canonical" href="https://example.com/restaurants/le-bouchon">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Restaurant",
+            "name": "Primos Chicken",
+            "image": "https://lh3.googleusercontent.com/p/AF1QipMcl3SDuU_m2eFe0dG7qpDR0ZTfXybkF6sTiyP0=s1360-w1360-h1020",
+            "description": "PRIMOS CHICKEN est une entreprise familiale spécialisée en restauration rapide ,et installée dans le secteur de Rabat et ses proximités.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "21 Pl. Abou Bakr Saddik, Rabat 10090",
+                "addressLocality": "Rabat",
+                "addressRegion": "Rabat",
+                "postalCode": "10090",
+                "addressCountry": "Maroc"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 34.000642344710464,
+                "longitude": -6.847888494917156
+            },
+            "hasMenu": "https://glovoapp.com/ma/fr/rabat/primos-chicken-rbt/",
+            "telephone": "+212 080-8508309",
+            "openingHoursSpecification": [{
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                ],
+                "opens": "12:00",
+                "closes": "14:00"
+            }, {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                ],
+                "opens": "19:00",
+                "closes": "22:00"
+            }, {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "12:00",
+                "closes": "14:00"
+            }, {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "19:00",
+                "closes": "23:00"
+            }, {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "12:00",
+                "closes": "15:00"
+            }],
+            "servesCuisine": "Américaine"
+        }
+    </script>
+</head>
+<style>
+    h1 {
+        text-align : center;
+        font-weight : bold;
+        margin-bottom : 10px;
+    }
+</style>
+
+<body>
+<h1>PRIMOS CHICKEN</h1>
+<p>
+    PRIMOS CHICKEN est une entreprise familiale spécialisée en restauration rapide,
+    et installée dans le secteur de Rabat et ses proximités situé en plein cœur de la ville.
+    Nous proposons une cuisine traditionnelle et de saison, préparée avec des ingrédients
+    frais et de qualité. Notre carte est renouvelée régulièrement pour vous offrir de nouvelles saveurs
+    à chaque visite.
+</p>
+<p>
+    Nous sommes ouverts du lundi au vendredi de 12h à 14h et de 19h à 22h, et le samedi de 12h à 14h
+    et de 19h à 23h. Le dimanche, nous sommes ouverts de 12h à 15h.
+    N'hésitez pas à nous contacter au <a href="tel:+212 080-8508309">08 0-85 08309</a>
+    pour réserver une table ou pour toute autre demande.
+</p>
+<p>
+    Nous espérons vous accueillir bientôt au sein de notre établissement.
+</p>
+<table id="resultTable">
+    <tr>
+        <th>Sujet</th>
+        <th>Prédicat</th>
+        <th>Objet</th>
+    </tr>
+</table>
+
+<script>
+    function sendRequest() {
+        // Envoi de la requête HTTP vers l'API
+        fetch('http://localhost:8080/api/query')
+            .then(response => response.json())
+            .then(triplets => {
+                // Récupération de la table HTML
+                var table = document.getElementById("resultTable");
+
+                // Ajout des triplets aux lignes du tableau
+                triplets.forEach(triplet => {
+                    var row = table.insertRow();
+                    var subjectCell = row.insertCell(0);
+                    var predicateCell = row.insertCell(1);
+                    var objectCell = row.insertCell(2);
+                    subjectCell.innerHTML = triplet.subject;
+                    predicateCell.innerHTML = triplet.predicate;
+                    objectCell.innerHTML = triplet.object;
+                });
+            });
+    }
+</script>
+
+<button onclick="sendRequest()">Envoyer la requête</button>
+
+</body>
+
+</html>
