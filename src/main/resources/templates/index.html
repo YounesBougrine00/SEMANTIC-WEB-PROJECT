@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Description du restaurant "Le Bouchon"</title>
-    <link rel="canonical" href="https://example.com/restaurants/le-bouchon">
+    <title>Primos chicken Restaurant</title>
+    <link rel="canonical" href="https://primoschicken.com/" />
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
@@ -24,7 +24,7 @@
                 "latitude": 34.000642344710464,
                 "longitude": -6.847888494917156
             },
-            "hasMenu": "https://glovoapp.com/ma/fr/rabat/primos-chicken-rbt/",
+            "hasMenu": "https://primoschicken.com/notre-menu/",
             "telephone": "+212 080-8508309",
             "openingHoursSpecification": [{
                 "@type": "OpeningHoursSpecification",
@@ -69,31 +69,96 @@
     </script>
 </head>
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #444;
+        background-color: #eee;
+        margin: 0;
+        padding: 0;
+    }
+
     h1 {
-        text-align : center;
-        font-weight : bold;
-        margin-bottom : 10px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .main .box {
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    #resultTable {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #resultTable td,
+    #resultTable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .button2 {
+        position: relative;
+        left: 42%;
+        background-color: white;
+        color: black;
+        border: 2px solid #008CBA;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .button2:hover {
+        background-color: #008CBA;
+        color: white;
     }
 </style>
 
 <body>
 <h1>PRIMOS CHICKEN</h1>
-<p>
-    PRIMOS CHICKEN est une entreprise familiale spécialisée en restauration rapide,
-    et installée dans le secteur de Rabat et ses proximités situé en plein cœur de la ville.
-    Nous proposons une cuisine traditionnelle et de saison, préparée avec des ingrédients
-    frais et de qualité. Notre carte est renouvelée régulièrement pour vous offrir de nouvelles saveurs
-    à chaque visite.
-</p>
-<p>
-    Nous sommes ouverts du lundi au vendredi de 12h à 14h et de 19h à 22h, et le samedi de 12h à 14h
-    et de 19h à 23h. Le dimanche, nous sommes ouverts de 12h à 15h.
-    N'hésitez pas à nous contacter au <a href="tel:+212 080-8508309">08 0-85 08309</a>
-    pour réserver une table ou pour toute autre demande.
-</p>
-<p>
-    Nous espérons vous accueillir bientôt au sein de notre établissement.
-</p>
+<div class="main">
+    <p class="box">
+        PRIMOS CHICKEN est une entreprise familiale spécialisée en restauration rapide, et installée dans le secteur de Rabat et ses proximités situé en plein cœur de la ville. Nous proposons une cuisine traditionnelle et de saison, préparée avec des ingrédients
+        frais et de qualité. Notre carte est renouvelée régulièrement pour vous offrir de nouvelles saveurs à chaque visite.
+    </p>
+    <p class="box">
+        Nous sommes ouverts du lundi au vendredi de 12h à 14h et de 19h à 22h, et le samedi de 12h à 14h et de 19h à 23h. Le dimanche, nous sommes ouverts de 12h à 15h. N'hésitez pas à nous contacter au
+        <a href="tel:+212 080-8508309">08 0-85 08309</a> pour réserver une table ou pour toute autre demande.
+    </p>
+</div>
+<div class="main">
+    <p class="box" style="width: 80%;">Nous espérons vous accueillir bientôt au sein de notre établissement.</p>
+</div>
+
+<br>
+<hr>
 <table id="resultTable">
     <tr>
         <th>Sujet</th>
@@ -101,18 +166,19 @@
         <th>Objet</th>
     </tr>
 </table>
+<br>
 
 <script>
     function sendRequest() {
         // Envoi de la requête HTTP vers l'API
-        fetch('http://localhost:8080/api/query')
-            .then(response => response.json())
-            .then(triplets => {
+        fetch("http://localhost:8080/api/query")
+            .then((response) => response.json())
+            .then((triplets) => {
                 // Récupération de la table HTML
                 var table = document.getElementById("resultTable");
 
                 // Ajout des triplets aux lignes du tableau
-                triplets.forEach(triplet => {
+                triplets.forEach((triplet) => {
                     var row = table.insertRow();
                     var subjectCell = row.insertCell(0);
                     var predicateCell = row.insertCell(1);
@@ -124,9 +190,10 @@
             });
     }
 </script>
+<br>
+<hr>
 
-<button onclick="sendRequest()">Envoyer la requête</button>
-
+<button onclick="sendRequest()" class="button2">Voir contenu DBpedia</button>
 </body>
 
 </html>

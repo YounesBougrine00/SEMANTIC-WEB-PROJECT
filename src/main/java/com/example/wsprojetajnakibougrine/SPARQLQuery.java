@@ -27,6 +27,7 @@ public class SPARQLQuery {
             queryString += "  ?s dbpedia-owl:" + properties[i] + " ?o" + i + ".";
         }
         queryString += "}";
+        System.out.println(queryString);
         Query query = QueryFactory.create(queryString);
         QueryExecution qexec =  QueryExecution.service(service).query(query).build();
         ResultSet results = qexec.execSelect();
